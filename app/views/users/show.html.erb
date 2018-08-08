@@ -1,0 +1,7 @@
+Hey <%=@user.username %>!
+<br>
+<ul>
+  <% @boards.each do |board| %>
+    <li><%= link_to board.name, user_board_path(@user, board) %></li>
+  <% end %>
+</ul>
