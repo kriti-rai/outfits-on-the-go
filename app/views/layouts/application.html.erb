@@ -18,7 +18,7 @@
           <ul class="navbar-nav ml-auto">
             <% if !logged_in? %>
               <li class="nav-item">
-                <%= link_to "Log In", new_session_path, {class: "nav-link"}%>
+                <%= link_to "Log In", signin_path, {class: "nav-link"}%>
               </li>
               <li class="nav-item">
                 <%= link_to "Register", new_user_path, {class: "nav-link"}%>
@@ -28,7 +28,7 @@
                 <%= link_to "Profile", current_user, {class: "nav-link"} %>
               </li>
               <li class="nav-item">
-                <%= link_to "Sign Out", current_user, {method: "delete", class: "nav-link"} %>
+                <%= link_to "Sign Out", signout_path, {method: "delete", class: "nav-link"} %>
               </li>
             <% end %>
           </ul>
