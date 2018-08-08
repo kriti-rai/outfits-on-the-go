@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
   before_action :require_login
+  before_action :set_board, only: [:edit, :show, :destroy]
 
   def new
     @board = Board.new
@@ -25,19 +26,24 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @board = Board.find_by(id: params[:id])
     @user = @board.user
   end
 
   def destroy
     #only allowed by the user to whom the board belongs
-    @board = Board.find(params[:id]).destroy
+    if current_user = @board.user
+      @board.destroy
       redirect_to user_path(@board.user)
+    end
   end
 
   private
     def board_params
       params.require(:board).permit(:name, :user_id)
+    end
+
+    def set_board
+      @board = Board.find_by_id(params[:id])
     end
 
     def require_login
