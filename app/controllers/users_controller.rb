@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:create, :edit, :update, :show]
+  before_action :set_user, only: [:edit, :update, :show]
 
   def new
     @user = User.new
   end
 
   def create
-    # raise params.inspect
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -18,6 +17,8 @@ class UsersController < ApplicationController
   end
 
   def edit
+    #only the user themselves can edit their acc
+
   end
 
   def update
@@ -28,11 +29,19 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    #only the user themselves can destroy their acc
+    @user = User.find(params[:id])
+    if @user = current_user
+      @user.destroy
+      redirect_to root_url
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   private
     def set_user
-      @user = User.find_by(params[:id])
+      @user = User.find_by_id(params[:id])
     end
 
     def user_params
