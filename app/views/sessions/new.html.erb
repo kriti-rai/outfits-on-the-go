@@ -1,0 +1,10 @@
+<% if flash[:error] %>
+  <font color = 'red'> <%= flash[:error] %> </font>
+<% end %>
+<br>
+<%= form_tag(sessions_path, method: "post") do %>
+  <strong>Username: </strong><%= text_field_tag :username %><br>
+  <strong>Password: <strong><%= password_field_tag :password %><br>
+  <br>
+  <%= submit_tag "Log In" %>
+<% end %>
