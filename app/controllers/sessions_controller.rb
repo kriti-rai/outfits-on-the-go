@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       flash[:error] = "The username and password combination does not match our records."
-      redirect_to new_session_path
+      redirect_to signin_path
     end
   end
 
