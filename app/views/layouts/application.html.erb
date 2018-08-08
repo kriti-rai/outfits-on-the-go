@@ -28,6 +28,9 @@
                 <%= link_to current_user.username, current_user, {class: "nav-link"} %>
               </li>
               <li class="nav-item">
+                <%= link_to "+ Add a Board", new_user_board_path(current_user.boards), {class: "nav-link"} %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "Sign Out", signout_path, {method: "delete", class: "nav-link"} %>
               </li>
             <% end %>
