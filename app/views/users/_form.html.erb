@@ -1,3 +1,7 @@
+<% if flash[:error] %>
+  <font color = 'red'> <%= flash[:error] %> </font>
+<% end %>
+
 <%= form_for @user do |f| %>
   <strong>Username: </strong><%=f.text_field :username %><br>
   <strong>Email Address: <strong><%=f.text_field :email_address %><br>
