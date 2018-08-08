@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     # raise params.inspect
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
-      session[:id] = user.id
+      session[:user_id] = user.id
       redirect_to root_url
     else
       flash[:error] = "The username and password combination does not match our records."
@@ -19,8 +19,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete :id
-    session[:id] = nil
+    session.delete :user_id
+    session[:user_id] = nil
     redirect_to root_url
   end
 
