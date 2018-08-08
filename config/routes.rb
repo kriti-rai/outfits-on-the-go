@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
 
   resources :outfits
+  resources :sessions, only: [:new, :create, :destroy]
 
 end
