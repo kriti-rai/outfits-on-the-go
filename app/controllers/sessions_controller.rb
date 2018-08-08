@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    @user = User.new
   end
 
   def create
@@ -8,7 +7,15 @@ class SessionsController < ApplicationController
     #finds the user by params[:id]
     #if found, authenticates the user and logs them in (session[:id] = user.id)
     #if not found, redirects the user to login page
-
+    # raise params.inspect
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:id] = user.id
+      redirect_to root_url
+    else
+      flash[:error] = "The username and password combination does not match our records."
+      redirect_to new_session_path
+    end
   end
 
   def destroy
