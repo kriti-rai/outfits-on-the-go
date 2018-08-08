@@ -6,6 +6,15 @@ class UsersController < ApplicationController
   end
 
   def create
+    # raise params.inspect
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to root_url
+    else
+      flash[:error] = @user.errors.full_messages[0]
+      render 'new'
+    end
   end
 
   def edit
@@ -23,5 +32,9 @@ class UsersController < ApplicationController
   private
     def set_user
       @user = User.find_by(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:username, :email_address, :password, :bio)
     end
 end
