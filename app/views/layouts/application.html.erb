@@ -2,15 +2,12 @@
 <html>
   <head>
     <title>OutfitsOnTheGo</title>
-    <%= csrf_meta_tags %>
+=    <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
       <div class="container">
         <%= link_to "Home | Outfits On The Go", root_url, {class: "navbar-brand"}%>
