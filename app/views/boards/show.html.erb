@@ -1,3 +1,4 @@
 <%=@user.username%>
 <%=@board.name%>
-<%= link_to "Delete the board?", @board, method: :delete %>
+<br>
+<p><%= link_to "Edit", edit_board_path(@board)%> | <%= link_to "Delete", @board, method: :delete, data: {confirm: "Are you sure?"} %></p>
