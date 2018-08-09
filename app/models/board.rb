@@ -1,4 +1,6 @@
 class Board < ApplicationRecord
-  has_many :outfits, dependent: :destroy
   belongs_to :user
+  has_many :outfits, dependent: :destroy
+  accepts_nested_attributes_for :outfits
+
 end
