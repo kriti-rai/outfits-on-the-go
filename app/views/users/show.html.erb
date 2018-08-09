@@ -1,7 +1,13 @@
-Hey <%=@user.username %>!
+<h1>Hey <%=@user.username %>!</h1>
 <br>
-<ul>
-  <% @boards.each do |board| %>
-    <li><%= link_to board.name, user_board_path(@user, board) %></li>
-  <% end %>
-</ul>
+
+<% if @boards.empty? %>
+  <h3>You currently don't have any boards :(</h3>
+  <%= link_to "Create a Board", new_user_board_path(@user.boards) %>
+<% else %>
+  <ul>
+    <% @boards.each do |board| %>
+      <li><%= link_to board.name, board %></li>
+    <% end %>
+  </ul>
+<% end %>
