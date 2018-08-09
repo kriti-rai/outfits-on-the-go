@@ -1,13 +1,13 @@
 class OutfitsController < ApplicationController
   before_action :set_outfit, only: [:edit, :update, :show, :delete]
-  def new
-    @outfit = Outfit.new
-  end
 
+  def new
+    @outfit = Outfit.new(user: current_user, board: Board.find(params[:board_id]))
+  end
   def create
     @outfit = Outfit.new(outfit_params)
     if @outfit.save
-      render 'show'
+      redirect_to @outfit
     else
       render 'new'
     end
@@ -17,7 +17,8 @@ class OutfitsController < ApplicationController
   end
 
   def update
-    @outfit.update(params[:outfit])
+    @outfit.update(outfit_params)
+    redirect_to @outfit
   end
 
   def show
@@ -37,6 +38,6 @@ class OutfitsController < ApplicationController
   end
 
   def set_outfit
-    Outfit.find_by(id: params[:id])
+    @outfit = Outfit.find_by(id: params[:id])
   end
 end
