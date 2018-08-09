@@ -1,11 +1,9 @@
 <em><h2><%=@board.name%></h2></em>
 
 <% if !@board.outfits.empty? %>
-  <ul>
-    <% @board.outfits.each do |outfit| %>
-      <li>outfit.caption</li>
+    <% @board.outfits.each.with_index(1) do |outfit, i| %>
+      <p><%="#{i}"%>. <%=link_to "Outfit #{i}", outfit %></p>
     <% end %>
-  </ul>
   <% else %>
     You don't have any outfit listed on this board yet.
 <% end %>
