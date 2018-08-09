@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   delete '/signout' => 'sessions#destroy'
-  
+
   resources :users do
-    resources :boards
+    resources :boards, shallow: true
   end
 
   resources :outfits
