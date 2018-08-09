@@ -1,0 +1,4 @@
+<br>
+<%= @outfit.caption %> <%= link_to "Edit Caption", edit_outfit_path(@outfit) %>
+
+<p><%= link_to "Delete Outfit", @outfit, method: :delete, data: {confirm: "Are you sure?"}%></p>
