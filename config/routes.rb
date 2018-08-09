@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
   delete '/signout' => 'sessions#destroy'
 
-  resources :users do
-    resources :boards, shallow: true
+  resources :users, shallow: true do
+    resources :boards, shallow: true do
+      resources :outfits
+    end
   end
 
-  resources :outfits
 
 
 end
