@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'welcome#welcome'
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
+  get '/auth/facebook/callback' => 'sessions#create'
   delete '/signout' => 'sessions#destroy'
 
   resources :users, shallow: true do
