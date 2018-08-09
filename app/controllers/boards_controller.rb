@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   before_action :require_login
-  before_action :set_board, only: [:edit, :show, :destroy]
+  before_action :set_board, only: [:edit, :update, :show, :destroy]
 
   def new
     @board = Board.new
@@ -20,13 +20,22 @@ class BoardsController < ApplicationController
 
   def edit
     #only allowed by the user to whom the board belongs
+    if current_user = @board.user
+      render 'edit'
+    else
+      flash[:error] = "You don't have the permissions to perform this action."
+      redirect_to root_url
+    end
   end
 
   def update
+    raise params.inspect
+    @board.update(params)
   end
 
   def show
     @user = @board.user
+    @outfit = Outfit.new
   end
 
   def destroy
