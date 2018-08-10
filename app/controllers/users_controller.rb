@@ -18,7 +18,6 @@ class UsersController < ApplicationController
 
   def edit
     #only the user themselves can edit their acc
-
   end
 
   def update
@@ -45,6 +44,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :email_address, :password, :bio)
+      params.require(:user).permit(:username, :email_address, :password, :bio, :image)
     end
 end
