@@ -15,7 +15,7 @@ class BoardsController < ApplicationController
     @board = Board.create(name: params[:board][:name], user_id: current_user.id)
     # @user = current_user
     # binding.pry
-    redirect_to user_board_path(current_user, @board)
+    redirect_to @board
   end
 
   def edit
