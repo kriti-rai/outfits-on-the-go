@@ -1,2 +1,22 @@
 
 @import "bootstrap";
+
+img.user-show {
+  width: 200px;
+  height: auto;
+  border-radius: 50%;
+}
+
+a.outfit-thumbnail img {
+  width: 350px;
+  height: auto;
+}
+img.outfit-show {
+  width: 500px;
+  height: auto;
+}
+
+h1 {
+  color: #4682b4;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
