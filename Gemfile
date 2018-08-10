@@ -32,6 +32,7 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
+gem 'carrierwave', '~> 1.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
