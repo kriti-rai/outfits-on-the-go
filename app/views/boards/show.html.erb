@@ -1,11 +1,14 @@
-<em><h2><%=@board.name%></h2></em>
-
+<div class="board-header">
+  <strong><h1><%=@board.name%></h1></strong>
+  <br>
+</div>
 <% if !@board.outfits.empty? %>
-    <% @board.outfits.each.with_index(1) do |outfit, i| %>
-      <p><%="#{i}"%>. <%=link_to "Outfit #{i}", outfit %></p>
+    <% @board.outfits.each do |outfit, i| %>
+      <p><%=link_to image_tag(outfit.image.url), outfit, class: 'outfit-thumbnail' %></p>
+      <p><em><%= outfit.caption %></em></p>
     <% end %>
   <% else %>
     You don't have any outfit listed on this board yet.
 <% end %>
 <br>
-<p><%= link_to "Add an Outfit", new_board_outfit_path(@board, @outfit)%> | <%= link_to "Edit", edit_board_path(@board)%> | <%= link_to "Delete", @board, method: :delete, data: {confirm: "Are you sure?"} %></p>
+<p><%= link_to "Go Back", @board.user %>| <%= link_to "Add an Outfit", new_board_outfit_path(@board, @outfit)%> | <%= link_to "Edit", edit_board_path(@board)%> | <%= link_to "Delete", @board, method: :delete, data: {confirm: "Are you sure?"} %></p>
