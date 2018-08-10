@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  mout_uploader :image, ImageUploader
+  mount_uploader :image, ImageUploader
 
   has_many :boards, dependent: :destroy
   has_many :outfits, through: :boards
