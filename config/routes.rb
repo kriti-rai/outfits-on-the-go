@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   get '/auth/facebook/callback' => 'sessions#create'
+  get 'auth/failure', to: redirect('/')
   delete '/signout' => 'sessions#destroy'
 
   resources :users, shallow: true do
