@@ -1,5 +1,5 @@
-<% if @user.image == "" %>
-  <%= image_tag @user.image.resize.url%>
+<% if @user.image != "" %>
+  <%= image_tag @user.image.url, {class: "user-show"}%>
 <% end %>
 <h1>Hey <%=@user.username %>!</h1>
 <br>
