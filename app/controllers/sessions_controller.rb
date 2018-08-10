@@ -4,10 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     if auth
-      raise params.inspect
-
       @user = User.find_or_create_by(auth)
-      binding.pry
       session[:user_id] = @user.id
       redirect_to @user
     else
