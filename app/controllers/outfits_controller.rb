@@ -24,7 +24,7 @@ class OutfitsController < ApplicationController
   def show
   end
 
-  def delete
+  def destroy
     if current_user == @outfit.user
       @outfit.destroy
       redirect_to current_user
@@ -34,7 +34,7 @@ class OutfitsController < ApplicationController
   private
 
   def outfit_params
-    params.require(:outfit).permit(:caption, :user_id, :board_id)
+    params.require(:outfit).permit(:caption, :user_id, :board_id, :image)
   end
 
   def set_outfit
