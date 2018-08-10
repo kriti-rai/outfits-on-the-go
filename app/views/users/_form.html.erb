@@ -3,6 +3,9 @@
 <% end %>
 
 <%= form_for @user do |f| %>
+<div class="form-group">
+  <%=f.file_field :image %>
+</div>
   <strong>Username: </strong><%=f.text_field :username %><br>
   <strong>Email Address: <strong><%=f.text_field :email_address %><br>
   <strong>Password: <strong><%=f.password_field :password %><br>
