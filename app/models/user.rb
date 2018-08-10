@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mout_uploader :image, ImageUploader
+
   has_many :boards, dependent: :destroy
   has_many :outfits, through: :boards
   accepts_nested_attributes_for :boards
@@ -9,7 +11,7 @@ class User < ApplicationRecord
     self.where(email_address: auth_hash["info"]["email"]).first_or_create do |user|
       user.username = auth_hash['info']['name']
       user.password = SecureRandom.hex
-      user.img = auth_hash['info']['image']
+      user.image = auth_hash['info']['image']
     end
   end
 
