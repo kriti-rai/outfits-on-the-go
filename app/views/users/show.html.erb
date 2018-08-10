@@ -1,16 +1,28 @@
-<% if @user.image != "" %>
-  <%= image_tag @user.image.url, {class: "user-show"}%>
-<% end %>
-<h1>Hey <%=@user.username %>!</h1>
+<h1><%=@user.username %>!</h1>
+<h6><em><font color= 'grey'><%=@user.bio%><%unless @user.bio.nil?%><%end%></em>
 <br>
-
-<% if @boards.empty? %>
-  <h3>You currently don't have any boards :(</h3>
-  <%= link_to "Create a Board", new_user_board_path(@user.boards) %>
+<% if @file %>
+  <%= image_tag @user.image.url, {class: "user-show"}%>
 <% else %>
-  <ul>
-    <% @boards.each do |board| %>
-      <li><%= link_to board.name, board %></li>
-    <% end %>
-  </ul>
+  <%= image_tag asset_path('no_image.png'), {class: "user-show"}%>
 <% end %>
+<br>
+<br>
+<br>
+<% if !@boards.empty? %>
+    <div>
+      <h5> Currently you have <%=pluralize(@boards.size, 'board')%> | <%= link_to "Create a Board", new_user_board_path(@user.boards) %></h5>
+
+    </div>
+    <br>
+    <br>
+    <% @boards.each do |board| %>
+      <p><%= link_to board.name, board %></p>
+    <% end %>
+  <% else %>
+    <div>
+      <h5> Currently you don't have any board | <%= link_to "Create a Board", new_user_board_path(@user.boards) %></h5>
+    </div>
+<%end %>
+<br>
+<br>
