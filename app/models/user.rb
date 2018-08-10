@@ -4,4 +4,13 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :boards
 
   has_secure_password
+
+  def self.find_or_create_by(auth_hash)
+    self.where(email_address: auth_hash["info"]["email"]).first_or_create do |user|
+      user.username = auth_hash['info']['name']
+      user.password = SecureRandom.hex
+      user.img = auth_hash['info']['image']
+    end
+  end
+
 end
