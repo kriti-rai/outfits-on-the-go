@@ -1,5 +1,5 @@
 class OutfitsController < ApplicationController
-  before_action :set_outfit, only: [:edit, :update, :show, :delete]
+  before_action :set_outfit, only: [:edit, :update, :show, :destroy]
 
   def new
     @outfit = Outfit.new(user: current_user, board: Board.find(params[:board_id]))
