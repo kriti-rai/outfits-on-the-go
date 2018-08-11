@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
+      flash[:success] = "Logged in succesfully"
       redirect_to welcome_path
     else
       flash[:error] = @user.errors.full_messages[0]
@@ -18,6 +19,12 @@ class UsersController < ApplicationController
 
   def edit
     #only the user themselves can edit their acc
+    if @user == current_user
+      render 'edit'
+    else
+      flash[:error] = "Access denied"
+      redirect_to welcome_path
+    end
   end
 
   def update
@@ -27,6 +34,9 @@ class UsersController < ApplicationController
     @boards= @user.boards
   end
 
+  def index
+  end
+
   def destroy
     #only the user themselves can destroy their acc
     @user = User.find(params[:id])
@@ -34,7 +44,8 @@ class UsersController < ApplicationController
       @user.destroy
       redirect_to root_url
     else
-      raise ActionController::RoutingError.new('Not Found')
+      flash[:error] = "Access denied"
+      redirect_to welcome_path
     end
   end
 
