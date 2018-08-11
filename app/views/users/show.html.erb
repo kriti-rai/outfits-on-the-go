@@ -1,9 +1,14 @@
-<h1><%=@user.username %>!</h1>
-<h6><em><font color= 'grey'><%=@user.bio%><%unless @user.bio.nil?%><%end%></em>
+<br>
 <br>
 <% if @user.image? %>
   <%= image_tag @user.image.url, {class: "user-show"}%>
 <% else %>
   <%= image_tag asset_path('no_image.png'), {class: "user-show"}%>
 <% end %>
-<%= render partial: 'boards/boards', locals: {boards: @boards} %>
+<br>
+<br>
+<h1><%=@user.username %>!</h1>
+<h6><em><font color= 'grey'>Bio: <%=@user.bio%><%unless @user.bio.nil?%><%end%></em>
+<br>
+<br>
+<div class= "button"><%= link_to "Boards", user_boards_path(@user) %></div>
