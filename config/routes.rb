@@ -14,10 +14,11 @@ Rails.application.routes.draw do
 
 
   #routes for users, boards, outfits
-  resources :users, shallow: true do
-    resources :boards
-      resources :outfits
+  resources :users do
+    resources :boards , shallow: true do
+      resources :outfits, shallow: true
   end
+end
 
   #once user is logged in show 'welcome'
   get '/welcome' => 'welcome#welcome'
