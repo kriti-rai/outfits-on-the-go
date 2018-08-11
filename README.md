@@ -8,7 +8,7 @@ Outfits On The Go is a Rails application that works like a planner for outfits. 
 
 ## Installation:
 
-- You can install Rails by running `$ gem install rails` if you don't have it already
+- If you don't have Rails, install by running `$ gem install rails`
 - Fork and clone this repo
 - Run `$ bundle install` to install all required dependencies  
 - Run `$ rake db:migrate` to make all database migrations
