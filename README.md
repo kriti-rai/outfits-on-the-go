@@ -1,12 +1,12 @@
 # Outfits On The Go
 
 
-###Intro
+## Intro
 
 Outfits On The Go is a Rails application that works like a planner for outfits. Upon logging in with a username and a password or via Facebook, the user gets to create boards where they can add outfits they plan to wear for specific occasions. The purpose of this app is to save time (and headache) when it comes to planning an outfit and prevent one from over- or under-packing if going away on a trip.
 
 
-###Installation:
+## Installation:
 
 - You can install Rails by running `$ gem install rails` if you don't have it already
 - Fork and clone this repo
@@ -16,7 +16,7 @@ Outfits On The Go is a Rails application that works like a planner for outfits. 
 - View the page at http://localhost:3000
 
 
-###Dependencies
+## Dependencies
 
  - [bcrypt](https://rubygems.org/gems/bcrypt/versions/3.1.11) - To encrypt user's passwords
  - [bootstrap](https://github.com/twbs/bootstrap) - For styling
@@ -27,11 +27,11 @@ Outfits On The Go is a Rails application that works like a planner for outfits. 
  - [omniauth-facebook](https://github.com/mkdynamic/omniauth-facebook) - For allowing users to signup/login via Facebook
 
 
-###Contributing
+## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/kriti-rai/outfits-on-the-go.git. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 
-###License
+## License
 
 All software is available as open source under the terms of the MIT License.
