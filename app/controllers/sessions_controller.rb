@@ -11,12 +11,14 @@ class SessionsController < ApplicationController
     if auth
       @user = User.find_or_create_by(auth)
       session[:user_id] = @user.id
-      redirect_to @user
+      flash[:success] = "Logged in succesfully"
+      redirect_to welcome_path
     else
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        redirect_to @user
+        flash[:success] = "Logged in succesfully"
+        redirect_to welcome_path
       else
         flash[:error] = "The username and password combination does not match our records."
         redirect_to signin_path
