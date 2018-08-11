@@ -3,6 +3,10 @@ class User < ApplicationRecord
 
   has_many :boards, dependent: :destroy
   has_many :outfits, through: :boards
+
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :email_address, presence: true, uniqueness: { case_sensitive: false }
+
   accepts_nested_attributes_for :boards
 
   has_secure_password
