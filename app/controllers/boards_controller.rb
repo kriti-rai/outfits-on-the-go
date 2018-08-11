@@ -35,6 +35,16 @@ class BoardsController < ApplicationController
     @outfit = Outfit.new
   end
 
+  def index
+    @user = User.find_by_id(params[:user_id])
+    if !@user.nil?
+      @boards = @user.boards
+    else
+      flash[:error] = "The user does not exist"
+      redirect_to welcome_path
+    end
+  end
+
   def destroy
     #only allowed by the user to whom the board belongs
     if current_user = @board.user
