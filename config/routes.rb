@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     end
   end
 
-
+  get '/welcome' => 'welcome#welcome'
 
 end
