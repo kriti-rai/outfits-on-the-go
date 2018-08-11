@@ -27,7 +27,8 @@ class BoardsController < ApplicationController
   end
 
   def update
-    @board.update(params)
+    @board.update(board_params)
+    redirect_to @board
   end
 
   def show
