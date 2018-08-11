@@ -13,8 +13,6 @@ class BoardsController < ApplicationController
     #board needs to know if it has any outfits (edit?)
     #only allowed to create if a user is logged in
     @board = Board.create(name: params[:board][:name], user_id: current_user.id)
-    # @user = current_user
-    # binding.pry
     redirect_to @board
   end
 
@@ -29,7 +27,6 @@ class BoardsController < ApplicationController
   end
 
   def update
-    raise params.inspect
     @board.update(params)
   end
 
@@ -42,7 +39,7 @@ class BoardsController < ApplicationController
     #only allowed by the user to whom the board belongs
     if current_user = @board.user
       @board.destroy
-      redirect_to user_path(@board.user)
+      redirect_to current_user
     end
   end
 
@@ -56,7 +53,7 @@ class BoardsController < ApplicationController
     end
 
     def require_login
-      redirect_to root_url unless logged_in?
+      redirect_to signin_path unless logged_in?
     end
 
 end
