@@ -1,5 +1,5 @@
 <% if flash[:error] %>
-  <font color = 'red'> <%= flash[:error] %> </font>
+  <div class="alert-danger"> <%= flash[:error] %> </div>
 <% end %>
 
 <%= form_for @user do |f| %>
