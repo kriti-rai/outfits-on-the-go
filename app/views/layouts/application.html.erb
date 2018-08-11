@@ -30,16 +30,18 @@
               <li class="nav-item">
                 <%= link_to "My Boards", user_boards_path(current_user), {class: "nav-link"} %>
               </li>
-
-              <li class="nav-item dropdown">
+              <li class="nav-item">
+                <%= link_to "Users", users_path, {class: "nav-link"} %>
+              </li>
+              <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Settings
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                   <%= link_to "Edit Account", edit_user_path(current_user), {class: "dropdown-item"} %>
-                   <%= link_to "Delete Account", current_user, {method: :delete, data: {confirm: "Are you sure?"}, class: "dropdown-item"} %>
-                 </div>
-               </li>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                   <li><%= link_to "Edit Account", edit_user_path(current_user), {class: "dropdown-item"} %></li>
+                   <li><%= link_to "Delete Account", current_user, {method: :delete, data: {confirm: "Are you sure?"}, class: "dropdown-item"} %></li>
+                 </ul>
+               </div>
               <li class="nav-item">
                 <%= link_to "Sign Out", signout_path, {method: "delete", class: "nav-link"} %>
               </li>
