@@ -6,4 +6,4 @@
 <% else %>
   <%= image_tag asset_path('no_image.png'), {class: "user-show"}%>
 <% end %>
-<%= render 'boards' %>
+<%= render partial: 'boards/boards', locals: {boards: @boards} %>
