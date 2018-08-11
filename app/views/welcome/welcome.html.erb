@@ -1,3 +1,7 @@
+<% if flash[:error] %>
+  <font color = 'red'> <%= flash[:error] %> </font>
+<% end %>
+
 <center><font color='pink'><h1>OUTFITS ON THE GO!!</h1></font>
 
 
@@ -5,5 +9,3 @@
 
   <h2>Save time. Save headache</h2></em>
 </center>
-
-<%= link_to('Log in with Facebook!', '/auth/facebook') %>
