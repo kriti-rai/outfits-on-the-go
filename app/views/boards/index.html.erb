@@ -1,1 +1,23 @@
-<%= render partial: 'boards', locals: {boards: @boards} %>
+<br>
+<br>
+<br>
+<% if !@boards.empty? %>
+  <% if pronoun == "you" %>
+    <h5> Currently you have <%=pluralize(@boards.size, 'board')%> | <%= link_to "Create a Board", new_user_board_path(@user.boards) %></h5>
+  <% else %>
+    <h5> Currently <%= pronoun %> has <%=pluralize(@boards.size, 'board')%></h5>
+    <br>
+      <div class= "button"><%= link_to "Go back to my boards", user_boards_path(current_user) %></div>
+  <%end %>
+    <% @boards.each do |board| %>
+        <p><%= link_to board.name, board %></p>
+    <% end %>
+<% else %>
+  <% if pronoun == "you" %>
+    <h5> Currently you don't have any board | <%= link_to "Create a Board", new_user_board_path(@user.boards) %></h5>
+  <% else %>
+    <h5> Currently <%= pronoun %> doesn't have any board</h5>
+    <br>
+      <div class= "button"><%= link_to "Go back to my boards", user_boards_path(current_user) %></div>
+  <%end %>
+<%end %>
