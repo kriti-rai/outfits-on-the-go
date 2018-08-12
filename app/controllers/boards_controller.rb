@@ -8,7 +8,12 @@ class BoardsController < ApplicationController
   end
 
   def create
-    @board = Board.create(name: params[:board][:name], user_id: current_user.id)
+    if !!params[:board][:name].nil? || params[:board][:name] == ""
+      @board = Board.new(name: "Untitled", user_id: current_user.id)
+    else
+      @board = Board.new(board_params)
+    end
+    @board.save
     redirect_to @board
   end
 
@@ -29,7 +34,7 @@ class BoardsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def feed
     @boards = Board.newest_to_oldest
   end
