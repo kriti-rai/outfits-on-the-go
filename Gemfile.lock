@@ -225,6 +225,8 @@ GEM
     selenium-webdriver (3.14.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
+    simple_hashtag (0.1.9)
+      rails (> 3.2.0)
     spoon (0.0.6)
       ffi
     spring (2.0.2)
@@ -297,6 +299,7 @@ DEPENDENCIES
   rails (~> 5.2.1)
   sass-rails (~> 5.0)
   selenium-webdriver
+  simple_hashtag
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
