@@ -22,7 +22,7 @@ Outfits On The Go is a Rails application that works like a planner for outfits. 
  - [bootstrap](https://github.com/twbs/bootstrap) - For styling
  - [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) - To upload files
  - [dotenv-rails](https://github.com/bkeepers/dotenv)- To load environment variables to aid omniauth-facebook login
- - [simple_hashtag](https://github.com/ralovely/simple_hashtag) - To implement hashtag fiture for outfits
+ - [simple_hashtag](https://github.com/ralovely/simple_hashtag) - To implement hashtag feature for outfits
  - [jquery-rails](https://github.com/rails/jquery-rails) - Lends Bootstrap JS functionalities
  - [minimagick](https://github.com/minimagick/minimagick) - To connect to the image processing library
  - [omniauth-facebook](https://github.com/mkdynamic/omniauth-facebook) - For allowing users to signup/login via Facebook
