@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   mount_uploader :image, ImageUploader
 
+  # scope :most_boards, -> { joins(:boards).group('users.id').order('COUNT(boards.id) DESC') }
+  
   has_many :boards, dependent: :destroy
   has_many :outfits, through: :boards
 
@@ -18,5 +20,4 @@ class User < ApplicationRecord
       user.image = auth_hash['info']['image']
     end
   end
-
 end
