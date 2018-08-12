@@ -6,19 +6,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    if auth
+      @user = User.find_or_create_by(auth)
+    else
+      @user = User.new(user_params)
+    end
+
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Logged in succesfully"
-      redirect_to welcome_path
-    else
+      redirect_to feed_path
+    else 
       flash[:error] = @user.errors.full_messages[0]
       render 'new'
     end
   end
 
   def edit
-    #only the user themselves can edit their acc
     if @user == current_user
       render 'edit'
     else
@@ -53,11 +57,14 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def user_params
+      params.require(:user).permit(:username, :email_address, :password, :bio)
+    end
+
     def set_user
       @user = User.find_by_id(params[:id])
     end
 
-    def user_params
-      params.require(:user).permit(:username, :email_address, :password, :bio, :image)
-    end
+
 end
