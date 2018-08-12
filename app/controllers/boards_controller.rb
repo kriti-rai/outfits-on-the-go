@@ -64,7 +64,10 @@ class BoardsController < ApplicationController
     end
 
     def require_login
-      redirect_to signin_path unless logged_in?
+      if !logged_in?
+        flash[:error] = "Please log in"
+        redirect_to signin_path
+      end
     end
 
 end
