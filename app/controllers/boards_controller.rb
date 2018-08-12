@@ -29,7 +29,7 @@ class BoardsController < ApplicationController
       render 'edit'
     end
   end
-
+  
   def feed
     @boards = Board.newest_to_oldest
   end
