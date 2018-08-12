@@ -1,6 +1,16 @@
+<% if flash[:error] %>
+  <div class="alert-danger"> <%= flash[:error] %> </div>
+<% end %><br />
+<% if flash[:success] %>
+  <div class="alert-success"> <%= flash[:success] %> </div>
+<% end %><br />
 <br>
 <h5><em><font color="grey"><%= @outfit.caption %> </em></h5>
-
-<div><%= image_tag @outfit.image.url, {class: "outfit-show"}%></div>
-
-<p><%= link_to "Go Back", @outfit.board %> | <%= link_to "Edit Caption", edit_outfit_path(@outfit) %> | <%= link_to "Delete Outfit", @outfit, method: :delete, data: {confirm: "Are you sure?"}%></p>
+<%= render partial: "outfit", locals: {outfit: @outfit} %>
+<br>
+<br>
+<p><%= link_to "Go Back", @outfit.board %>
+  <% if current_user == @outfit.user %>
+    | <%= link_to "Edit Caption", edit_outfit_path(@outfit) %> | <%= link_to "Delete Outfit", @outfit, method: :delete, data: {confirm: "Are you sure?"}%></p>
+  <% end %>
+</p>
