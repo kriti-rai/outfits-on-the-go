@@ -1,9 +1,5 @@
-<% if flash[:error] %>
-  <div class="alert-danger"> <%= flash[:error] %> </div>
-<% end %>
-
+<font color='pink'><h1>Welcome!</h1></font>
 <br>
-
 <div class="login-form">
   <%= form_tag(signin_path, method: "post") do %>
   Username: <%= text_field_tag :username %><br>
