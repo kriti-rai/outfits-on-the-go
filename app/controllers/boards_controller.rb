@@ -4,20 +4,15 @@ class BoardsController < ApplicationController
 
   def new
     @board = Board.new
-    # @user = current_user
     @board.user = current_user
   end
 
   def create
-    #board needs to know that it belongs to a user
-    #board needs to know if it has any outfits (edit?)
-    #only allowed to create if a user is logged in
     @board = Board.create(name: params[:board][:name], user_id: current_user.id)
     redirect_to @board
   end
 
   def edit
-    #only allowed by the user to whom the board belongs
     if current_user = @board.user
       render 'edit'
     else
@@ -27,8 +22,16 @@ class BoardsController < ApplicationController
   end
 
   def update
-    @board.update(board_params)
-    redirect_to @board
+    if @board.update(board_params)
+      flash[:success] = "Successfully updated the board"
+      redirect_to @board
+    else
+      render 'edit'
+    end
+  end
+
+  def feed
+    @boards = Board.newest_to_oldest
   end
 
   def show
@@ -42,15 +45,14 @@ class BoardsController < ApplicationController
       @boards = @user.boards
     else
       flash[:error] = "The user does not exist"
-      redirect_to welcome_path
+      redirect_to 'boards/feed'
     end
   end
 
   def destroy
-    #only allowed by the user to whom the board belongs
     if current_user = @board.user
       @board.destroy
-      redirect_to current_user
+      redirect_to user_boards(current_user)
     end
   end
 
