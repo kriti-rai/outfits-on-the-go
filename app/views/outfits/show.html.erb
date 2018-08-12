@@ -1,9 +1,3 @@
-<% if flash[:error] %>
-  <div class="alert-danger"> <%= flash[:error] %> </div>
-<% end %><br />
-<% if flash[:success] %>
-  <div class="alert-success"> <%= flash[:success] %> </div>
-<% end %><br />
 <br>
 <h5><em><font color="grey"><%= @outfit.caption %> </em></h5>
 <%= render partial: "outfit", locals: {outfit: @outfit} %>
