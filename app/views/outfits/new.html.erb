@@ -2,12 +2,16 @@
 <h1> Post an Outfit </h1>
 <br>
 <%= form_for @outfit, url: board_outfits_path, method: :post do |f| %>
-<div class="form-group">
-  <%=f.file_field :image %>
-</div>
-  <%= f.text_field :caption, placeholder: "Say something..." %>
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :board_id %>
+  <div>
+    <%=f.file_field :image, class: "btn btn-secondary btn-lg"%>
+  </div>
+  <br>
+  <div class="login-form">
+    <%= f.text_field :caption, placeholder: "Caption" %><br>
+    <%= f.text_field :tags, placeholder: "#Add tags (comma separated)" %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :board_id %>
 
-  <%= f.submit "Post"%>
+    <%= f.submit "Post", class: "btn btn-primary btn-sm"%>
+  </div>
 <% end %>
