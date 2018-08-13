@@ -1,2 +1,2 @@
 <h2>Edit board</h2>
-<%= render 'form' %>
+<%= render partial: 'form', locals: {board: @board, url: board_path(@board), method: "patch"} %>
