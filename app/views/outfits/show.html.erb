@@ -5,6 +5,6 @@
 <br>
 <p><%= link_to "Go Back", @outfit.board %>
   <% if current_user == @outfit.user %>
-    | <%= link_to "Edit Caption", edit_outfit_path(@outfit) %> | <%= link_to "Delete Outfit", @outfit, method: :delete, data: {confirm: "Are you sure?"}%></p>
+    | <%= link_to "Edit", edit_outfit_path(@outfit) %> | <%= link_to "Delete Outfit", @outfit, method: :delete, data: {confirm: "Are you sure?"}%></p>
   <% end %>
 </p>
