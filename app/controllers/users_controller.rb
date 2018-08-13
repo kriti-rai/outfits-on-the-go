@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       render 'edit'
     else
       flash[:error] = "Access denied"
-      redirect_to root_url
+      redirect_to @user
     end
   end
 
