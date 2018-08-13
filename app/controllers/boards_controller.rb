@@ -9,20 +9,22 @@ class BoardsController < ApplicationController
 
   def create
     if !!params[:board][:name].nil? || params[:board][:name] == ""
-      @board = Board.new(name: "Untitled", user_id: current_user.id)
+      board = Board.new(name: "Untitled", user_id: current_user.id)
     else
-      @board = Board.new(board_params)
+      board = Board.new(board_params)
     end
-    @board.save
-    redirect_to @board
+    if board.save
+      @board = board
+      redirect_to @board
+    end
   end
 
   def edit
-    if current_user = @board.user
+    if current_user == @board.user
       render 'edit'
     else
       flash[:error] = "You don't have the permissions to perform this action."
-      redirect_to root_url
+      redirect_to @board
     end
   end
 
@@ -50,7 +52,7 @@ class BoardsController < ApplicationController
       @boards = @user.boards
     else
       flash[:error] = "The user does not exist"
-      redirect_to 'boards/feed'
+      redirect_to feed_path
     end
   end
 
