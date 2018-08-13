@@ -1,2 +1,5 @@
-<h2>Edit board</h2>
+<font color='teal'><h2>Edit Board</h2></font>
+
 <%= render partial: 'form', locals: {board: @board, url: board_path(@board), method: "patch"} %>
+
+<div class= "button"><%= link_to "Go back", @board %></div>
