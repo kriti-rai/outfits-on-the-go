@@ -1,7 +1,7 @@
 <div class="display-1">Feed</div>
 <br>
 <% @boards.each do |board| %>
-    <p><%= link_to board.user.username, board.user %> created <%= link_to board.name, board %> at <%= board.created_date %></p>
+    <p><%= link_to board.user.username, board.user %> created <%= link_to board.name, board %> on <%= board.created_date %></p>
 <% end %>
 <br>
 <br>
