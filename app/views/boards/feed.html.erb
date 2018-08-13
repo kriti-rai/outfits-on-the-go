@@ -1,4 +1,4 @@
-<div class="display-1">Feed</div>
+<h1>Feed</h1>
 <br>
 <% @boards.each do |board| %>
     <p><%= link_to board.user.username, board.user %> created <%= link_to board.name, board %> on <%= board.created_date %></p>
