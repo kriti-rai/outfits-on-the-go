@@ -1,0 +1,14 @@
+<%= form_for outfit, url: url, method: method do |f| %>
+  <div>
+    <%=f.file_field :image, class: "btn btn-secondary btn-lg"%>
+  </div>
+  <br>
+  <div class="login-form">
+    <%= f.text_field :caption, placeholder: "Caption" %><br>
+    <%= f.text_field :tags, placeholder: "#Add tags (comma separated)"%>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :board_id %>
+
+    <%= f.submit "Post", class: "btn btn-primary btn-sm"%>
+  </div>
+<% end %>
