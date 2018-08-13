@@ -1,6 +1,7 @@
 <br>
-<%= form_for @board, url: user_boards_path, method: :post do |f| %>
-  <strong>Name: </strong><%=f.text_field :name %><br>
+<%= form_for board, url: url, method: method do |f| %>
+  Name: <%=f.text_field :name %><br>
+  <%= f.hidden_field :user_id %>
   <br>
-  <%=f.submit %>
+  <%= f.submit %>
 <% end %>
