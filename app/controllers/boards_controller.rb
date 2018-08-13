@@ -3,8 +3,13 @@ class BoardsController < ApplicationController
   before_action :set_board, only: [:edit, :update, :show, :destroy]
 
   def new
-    @board = Board.new
-    @board.user = current_user
+      @board = Board.new
+    if current_user == @board.user
+      render 'new' 
+    else
+      flash[:error] = "Permission denied"
+      redirect_to root_url
+    end
   end
 
   def create
@@ -59,7 +64,10 @@ class BoardsController < ApplicationController
   def destroy
     if current_user = @board.user
       @board.destroy
-      redirect_to user_boards(current_user)
+      redirect_to current_user
+    else
+      flash[:error] = "Permission denied"
+      redirect_to @board
     end
   end
 
