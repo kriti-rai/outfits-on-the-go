@@ -8,7 +8,10 @@
       <p><em><%= outfit.caption %></em></p>
     <% end %>
   <% else %>
-    You don't have any outfit listed on this board yet.
+    There are no outfit listed on this board yet.
 <% end %>
 <br>
-<p><%= link_to "Go Back", @board.user %>| <%= link_to "Add an Outfit", new_board_outfit_path(@board, @outfit)%> | <%= link_to "Edit", edit_board_path(@board)%> | <%= link_to "Delete", @board, method: :delete, data: {confirm: "Are you sure?"} %></p>
+<p><%= link_to "Go Back", @board.user %>
+<% if current_user == @board.user %>
+  | <%= link_to "Add an Outfit", new_board_outfit_path(@board, @outfit)%> | <%= link_to "Edit", edit_board_path(@board)%> | <%= link_to "Delete", @board, method: :delete, data: {confirm: "Are you sure?"} %></p>
+<% end %>
