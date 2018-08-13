@@ -1,6 +1,3 @@
-<br>
-<br>
-<br>
 <% if !@boards.empty? %>
   <% if pronoun == "you" %>
     <h5> Currently, you have <%=pluralize(@boards.size, 'board')%> | <%= link_to "Create a Board", new_user_board_path(@user.boards) %></h5>
