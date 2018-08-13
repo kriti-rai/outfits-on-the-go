@@ -1,11 +1,4 @@
 <br>
-<h1> Edit Post </h1>
+<font color='teal'><h2> Edit Post </h2></font>
 <br>
-<%= form_for @outfit, url: @outfit, method: :patch do |f| %>
-  <%= f.text_field :caption %>
-  <%= f.text_field :tags%>
-  <%= f.hidden_field :user_id %>
-  <%= f.hidden_field :board_id %>
-
-  <%= f.submit "Update"%>
-<% end %>
+<%= render partial: "form", locals: { outfit: @outfit, url: @outfit, method: "patch"} %>
