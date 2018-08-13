@@ -1,7 +1,9 @@
 <br>
-<%= form_for board, url: url, method: method do |f| %>
+<div class="login-form">
+  <%= form_for board, url: url, method: method do |f| %>
   Name: <%=f.text_field :name %><br>
   <%= f.hidden_field :user_id %>
   <br>
   <%= f.submit %>
 <% end %>
+</div>
