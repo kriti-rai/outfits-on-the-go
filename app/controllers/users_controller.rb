@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show]
+  before_action :set_user, only: [:edit, :update, :show, :destroy]
 
   def new
     @user = User.new
@@ -8,17 +8,19 @@ class UsersController < ApplicationController
   def create
     if auth
       @user = User.find_or_create_by(auth)
-    else
-      @user = User.new(user_params)
-    end
-
-    if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Logged in succesfully"
       redirect_to feed_path
     else
-      flash[:error] = @user.errors.full_messages[0]
-      render 'new'
+      @user = User.new(user_params)
+      if @user.save
+        session[:user_id] = @user.id
+        flash[:success] = "Logged in succesfully"
+        redirect_to feed_path
+      else
+        flash[:error] = @user.errors.full_messages[0]
+        render 'new'
+      end
     end
   end
 
@@ -47,7 +49,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     if @user == current_user
       @user.destroy
       redirect_to root_url
@@ -64,13 +65,11 @@ class UsersController < ApplicationController
     end
 
     def set_user
-      @user = User.find_by_id(params[:id])
+      @user = User.find_by(id: params[:id])
     end
 
     def auth
       request.env['omniauth.auth']
     end
-
-
 
 end
