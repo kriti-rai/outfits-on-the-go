@@ -1,2 +1,2 @@
 <h2>Create board</h2>
-<%= render 'form' %>
+<%= render partial: 'form', locals: {board: @board, url: user_boards_path, method: "post"} %>
