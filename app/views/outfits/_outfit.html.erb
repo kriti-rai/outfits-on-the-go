@@ -1,0 +1,8 @@
+<div><%= image_tag outfit.image.url, {class: "outfit-show"}%></div>
+
+<br>
+<% if !outfit.tags.nil? %>
+  Tags: <%= render partial: 'hashtags/hashtag', locals: {hashtags: outfit.hashtag_array} %>
+<% end %>
+<br>
+<br>
