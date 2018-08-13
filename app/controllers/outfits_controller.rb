@@ -39,7 +39,7 @@ class OutfitsController < ApplicationController
   def destroy
     if current_user == @outfit.user
       @outfit.destroy
-      redirect_to current_user
+      redirect_to @outfit.board
     else
       flash[:error] = "Permission denied"
       redirect_to @outfit
