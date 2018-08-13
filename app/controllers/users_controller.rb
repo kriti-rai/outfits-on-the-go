@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:success] = "Logged in succesfully"
       redirect_to feed_path
-    else 
+    else
       flash[:error] = @user.errors.full_messages[0]
       render 'new'
     end
@@ -27,13 +27,15 @@ class UsersController < ApplicationController
       render 'edit'
     else
       flash[:error] = "Access denied"
-      redirect_to welcome_path
+      redirect_to root_url
     end
   end
 
   def update
-    @user.update(user_params)
-    redirect_to @user
+    if @user.update(user_params)
+      flash[:success] = "Update successful"
+      redirect_to @user
+    end
   end
 
   def show
@@ -45,14 +47,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    #only the user themselves can destroy their acc
     @user = User.find(params[:id])
-    if @user = current_user
+    if @user == current_user
       @user.destroy
       redirect_to root_url
     else
       flash[:error] = "Access denied"
-      redirect_to welcome_path
+      redirect_to root_url
     end
   end
 
@@ -65,6 +66,11 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find_by_id(params[:id])
     end
+
+    def auth
+      request.env['omniauth.auth']
+    end
+
 
 
 end
