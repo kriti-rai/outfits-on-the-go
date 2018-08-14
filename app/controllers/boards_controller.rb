@@ -56,7 +56,7 @@ class BoardsController < ApplicationController
   def destroy
     if board_user
       @board.destroy
-      redirect_to user_boards(current_user)
+      redirect_to user_boards_path(current_user)
     else
       flash[:error] = "Permission denied"
       redirect_to @board
