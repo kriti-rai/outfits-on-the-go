@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login
+  skip_before_action :require_login, only: [:new, :create]
   before_action :set_user, only: [:edit, :update, :show, :destroy]
 
   def new
@@ -8,15 +10,11 @@ class UsersController < ApplicationController
   def create
     if auth
       @user = User.find_or_create_by(auth)
-      session[:user_id] = @user.id
-      flash[:success] = "Logged in succesfully"
-      redirect_to feed_path
+      log_user_in
     else
       @user = User.new(user_params)
       if @user.save
-        session[:user_id] = @user.id
-        flash[:success] = "Logged in succesfully"
-        redirect_to feed_path
+        log_user_in
       else
         flash[:error] = @user.errors.full_messages[0]
         render 'new'
@@ -41,11 +39,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @boards= @user.boards
   end
 
   def index
-    @users = User.all
+    @users = User.sorted
   end
 
   def destroy
