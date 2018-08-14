@@ -1,4 +1,5 @@
 class OutfitsController < ApplicationController
+  before_action :require_login
   before_action :set_outfit, only: [:edit, :update, :show, :destroy]
 
   def new
