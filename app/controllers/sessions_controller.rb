@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :require_login
+  skip_before_action :require_login, only: [:new, :create]
+
   def new
     if logged_in?
       redirect_to feed_path
@@ -10,15 +13,11 @@ class SessionsController < ApplicationController
   def create
     if auth
       @user = User.find_or_create_by(auth)
-      session[:user_id] = @user.id
-      flash[:success] = "Logged in succesfully"
-      redirect_to feed_path
+      log_user_in
     else
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
-        flash[:success] = "Logged in succesfully"
-        redirect_to feed_path
+        log_user_in
       else
         flash[:error] = "The username and password combination does not match our records."
         redirect_to signin_path
@@ -27,11 +26,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if logged_in?
-      session.delete :user_id
-    end
-
-    session[:user_id] = nil
+    session.delete :user_id
     redirect_to root_url
   end
 
