@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :boards
 
+  scope :sorted, -> {order("users.username ASC")}
+
   has_secure_password
 
   def self.find_or_create_by(auth_hash)
