@@ -6,8 +6,8 @@
 <br>
 <br>
 <h1><%=@user.username %>!</h1>
-<% if !@user.bio.nil? %>
-  <h6><em><font color= 'grey'>Bio: <%=@user.bio%><%unless @user.bio.nil?%><%end%></em>
+<% if @user.bio != nil %>
+  <h6><em><font color= 'grey'>Bio: <%=@user.bio%></em></h6>
 <% end %>
 <br>
 <br>
