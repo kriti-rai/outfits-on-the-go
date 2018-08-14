@@ -10,7 +10,7 @@
     <% end %>
 <% else %>
   <% if pronoun == "you" %>
-    <h5> Currently, you don't have any board | <%= link_to "Create a Board", new_user_board_path(@user.boards) %></h5>
+    <h5> Currently, you don't have any board | <%= link_to "Create a Board", new_user_board_path(@user) %></h5>
   <% else %>
     <h5> Currently, <%= pronoun %> doesn't have any board</h5>
   <% end %>
