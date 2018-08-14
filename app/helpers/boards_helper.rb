@@ -1,10 +1,6 @@
 module BoardsHelper
-  def pronoun
-    user = User.find_by_id(params[:user_id])
-    if current_user == user
-      "you"
-    else
-      user.username
-    end
+  def board_user
+    user = User.find_by(id: params[:user_id])
+    current_user == user ? true : false
   end
 end
