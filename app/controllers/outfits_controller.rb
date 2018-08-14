@@ -1,6 +1,6 @@
 class OutfitsController < ApplicationController
   before_action :require_login
-  before_action :set_outfit, only: [:edit, :update, :show, :destroy]
+  before_action :set_outfit, only: [:edit, :update, :index, :show, :destroy]
 
   def new
     @outfit = Outfit.new(user: current_user, board: Board.find(params[:board_id]))
@@ -32,6 +32,10 @@ class OutfitsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def index
+    @board = Board.find(params[:board_id])
   end
 
   def show
