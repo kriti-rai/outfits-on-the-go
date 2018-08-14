@@ -1,6 +1,7 @@
 class BoardsController < ApplicationController
   before_action :require_login
   before_action :set_board, only: [:edit, :update, :show, :destroy]
+  include BoardsHelper
 
   def new
     @board = Board.new
@@ -8,21 +9,18 @@ class BoardsController < ApplicationController
 
   def create
     if !!params[:board][:name].nil? || params[:board][:name] == ""
-      board = Board.new(name: "Untitled", user_id: current_user.id)
+      @board = Board.create(name: "Untitled", user_id: params[:board][:user_id])
     else
-      board = Board.new(board_params)
+      @board = Board.create(board_params)
     end
-    if board.save
-      @board = board
-      redirect_to @board
-    end
+    redirect_to @board
   end
 
   def edit
-    if current_user == @board.user
+    if board_user
       render 'edit'
     else
-      flash[:error] = "You don't have the permissions to perform this action."
+      flash[:error] = "Permission denied"
       redirect_to @board
     end
   end
@@ -46,7 +44,7 @@ class BoardsController < ApplicationController
   end
 
   def index
-    @user = User.find_by_id(params[:user_id])
+    @user = User.find_by(id: params[:user_id])
     if !@user.nil?
       @boards = @user.boards
     else
@@ -56,9 +54,9 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    if current_user = @board.user
+    if board_user
       @board.destroy
-      redirect_to current_user
+      redirect_to user_boards(current_user)
     else
       flash[:error] = "Permission denied"
       redirect_to @board
@@ -71,7 +69,7 @@ class BoardsController < ApplicationController
     end
 
     def set_board
-      @board = Board.find_by_id(params[:id])
+      @board = Board.find_by(id: params[:id])
     end
 
     def require_login
