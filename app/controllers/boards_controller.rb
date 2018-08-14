@@ -72,11 +72,4 @@ class BoardsController < ApplicationController
       @board = Board.find_by(id: params[:id])
     end
 
-    def require_login
-      if !logged_in?
-        flash[:error] = "Please log in"
-        redirect_to signin_path
-      end
-    end
-
 end
