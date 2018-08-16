@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/hashtags/:hashtag', to: 'hashtags#show',      as: :hashtag
 
   get '/boards/feed' => 'boards#feed', as: :feed
-  post '/boards/feed' => 'boards#feed'
+  # post '/boards/feed' => 'boards#feed'
 
   root to: 'sessions#new'
 

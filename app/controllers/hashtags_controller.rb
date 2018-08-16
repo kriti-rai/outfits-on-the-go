@@ -1,12 +1,17 @@
-class HashtagsController < ApplicationController
+class TagsController < ApplicationController
 
   def index
-    @hashtags = SimpleHashtag::Hashtag.all
+    # @hashtags = SimpleHashtag::Hashtag.all
+    @hashtags = Tag.all
   end
 
   def show
-    @hashtag = SimpleHashtag::Hashtag.find_by_name(params[:hashtag])
-    @hashtagged = @hashtag.hashtaggables if @hashtag
+    binding.pry
+    # @hashtag = SimpleHashtag::Hashtag.find_by_name(params[:hashtag])
+    # @hashtagged = @hashtag.hashtaggables if @hashtag
+    tag = Tag.find_by_name(params[:hashtag])
+    @outfits = tag.outfits
+    # binding.pry
   end
 
 end

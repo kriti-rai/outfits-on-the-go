@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_12_063753) do
+ActiveRecord::Schema.define(version: 2018_08_16_054554) do
 
   create_table "boards", force: :cascade do |t|
     t.string "name"
@@ -26,7 +26,14 @@ ActiveRecord::Schema.define(version: 2018_08_12_063753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.text "tags"
+    t.text "hashtags"
+  end
+
+  create_table "outfits_tags", force: :cascade do |t|
+    t.integer "outfit_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "simple_hashtag_hashtaggings", force: :cascade do |t|
@@ -43,6 +50,10 @@ ActiveRecord::Schema.define(version: 2018_08_12_063753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_simple_hashtag_hashtags_on_name"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
