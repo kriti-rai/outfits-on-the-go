@@ -54,7 +54,7 @@ class OutfitsController < ApplicationController
   private
 
     def outfit_params
-      params.require(:outfit).permit(:caption, :user_id, :board_id, :image, :hashtags, :tag_ids)
+      params.require(:outfit).permit(:caption, :user_id, :board_id, :image, :hashtags, :tag_ids=>[])
     end
 
     def set_outfit
