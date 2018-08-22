@@ -3,7 +3,7 @@
 <br>
 <% if !outfit.tags.nil? %>
   Tags: <% outfit.tags.each do |tag| %>
-    <%= link_to tag, tag %>
+    <%= link_to tag.name, hashtag_path(tag.name) %>
     <% end %>
 <% end %>
 <br>
