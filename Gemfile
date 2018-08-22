@@ -34,7 +34,6 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
-gem 'simple_hashtag'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
