@@ -10,6 +10,16 @@ class Outfit < ApplicationRecord
 
   after_create do
     outfit = Outfit.find_by(id: self.id)
+    add_tags(outfit)
+  end
+
+  before_update do
+    outfit = Outfit.find_by(id: self.id)
+    outfit.tags.clear
+    add_tags(outfit)
+  end
+
+  def add_tags(outfit)
     hashtags = outfit.hashtags.scan(/#\w+/)
     hashtags.uniq.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
@@ -17,14 +27,5 @@ class Outfit < ApplicationRecord
     end
   end
 
-  before_update do
-    outfit = Outfit.find_by(id: self.id)
-    outfit.tags.clear
-    hashtags = self.hashtags.scan(/#\w+/)
-    hashtags.uniq.map do |hashtag|
-      tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
-      outfit.tags << tag
-    end
-  end
 
 end
