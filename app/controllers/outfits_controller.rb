@@ -1,7 +1,8 @@
 class OutfitsController < ApplicationController
   before_action :require_login
   before_action :set_outfit, only: [:edit, :update, :index, :show, :destroy]
-
+  helper_method :outfit_owner
+  
   def new
     @outfit = Outfit.new(user: current_user, board: Board.find(params[:board_id]))
   end
@@ -17,7 +18,7 @@ class OutfitsController < ApplicationController
   end
 
   def edit
-    if current_user == @outfit.user
+    if outfit_owner
       render 'edit'
     else
       flash[:error] = "Permission denied"
@@ -42,7 +43,7 @@ class OutfitsController < ApplicationController
   end
 
   def destroy
-    if current_user == @outfit.user
+    if outfit_owner
       @outfit.destroy
       redirect_to @outfit.board
     else
@@ -60,4 +61,10 @@ class OutfitsController < ApplicationController
     def set_outfit
       @outfit = Outfit.find_by(id: params[:id])
     end
+
+    def outfit_owner
+      set_outfit
+      current_user == @outfit.user ? true : false
+    end
+
 end

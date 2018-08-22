@@ -4,7 +4,7 @@
 <br>
 <br>
 <p><%= link_to "Go Back", @outfit.board %>
-  <% if current_user == @outfit.user %>
+  <% if outfit_owner %>
     | <%= link_to "Edit", edit_outfit_path(@outfit) %> | <%= link_to "Delete", @outfit, method: :delete, data: {confirm: "Are you sure?"}%></p>
   <% end %>
 </p>
