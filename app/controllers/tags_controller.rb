@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
 
   def index
-    @hashtags = Tag.all
+    @hashtags = Tag.all.sort_by{|tag| tag.name}
   end
 
   def show
