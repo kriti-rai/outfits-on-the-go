@@ -8,7 +8,7 @@ class BoardsController < ApplicationController
   end
 
   def create
-    if !!params[:board][:name].nil? || params[:board][:name] == ""
+    if params[:board][:name].blank?
       @board = Board.create(name: "Untitled", user_id: params[:board][:user_id])
     else
       @board = Board.create(board_params)
