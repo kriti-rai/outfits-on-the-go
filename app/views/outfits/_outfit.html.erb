@@ -1,7 +1,7 @@
 <div><%= image_tag outfit.image.url, {class: "outfit-show"}%></div>
 
 <br>
-<% if !outfit.tags.nil? %>
+<% if !outfit.tags.empty? %>
   Tags: <% outfit.tags.each do |tag| %>
     <%= link_to tag.name, hashtag_path(tag.name) %>
     <% end %>
