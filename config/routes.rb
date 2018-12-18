@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get '/boards/feed' => 'boards#feed', as: :feed
 
+  get '/sortedtags' => 'tags#sorted_tags'
+
   root to: 'sessions#new'
 
   get '/signin' => 'sessions#new'

@@ -10,4 +10,8 @@ class TagsController < ApplicationController
     end
   end
 
+  def sorted_tags
+    @tags = Tag.sorted
+  end
+
 end
